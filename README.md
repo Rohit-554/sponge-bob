@@ -48,10 +48,11 @@ Then tell Claude: `install spongebob`. Claude will check your environment, run t
 curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/install.sh | bash
 ```
 
-Then set your GitHub token and run it:
+Then persist your GitHub token and run it:
 
 ```sh
-export SPONGEBOB_GITHUB_TOKEN=your_token
+echo 'export SPONGEBOB_GITHUB_TOKEN=your_token' >> ~/.zshrc
+source ~/.zshrc
 spongebob plan.md
 ```
 
@@ -111,21 +112,27 @@ spongebob uses GitHub Gist as the sharing backend. It needs a personal access to
 
 **Step 3.** Copy the generated token.
 
-**Step 4.** Export it in your shell:
+**Step 4.** Persist it in your shell config so it is available in every session:
 
+**Single account:**
 ```sh
-export SPONGEBOB_GITHUB_TOKEN=your_token_here
+echo 'export SPONGEBOB_GITHUB_TOKEN=your_token_here' >> ~/.zshrc
+source ~/.zshrc
 ```
 
-To keep it across sessions, add that line to your `~/.zshrc` or `~/.bashrc`.
+**Then verify it is set:**
+```sh
+echo $SPONGEBOB_GITHUB_TOKEN
+```
 
 ### Multiple Accounts Setup
 
-If you juggle personal and work GitHub accounts, you can define two tokens in your `~/.zshrc` or `~/.bashrc`:
+If you juggle personal and work GitHub accounts, run both commands:
 
 ```sh
-export SPONGEBOB_GITHUB_TOKEN=your_personal_token
-export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token
+echo 'export SPONGEBOB_GITHUB_TOKEN=your_personal_token' >> ~/.zshrc
+echo 'export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token' >> ~/.zshrc
+source ~/.zshrc
 ```
 
 When you want to share something to your work account, simply use the `--work` flag:
