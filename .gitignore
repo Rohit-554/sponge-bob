@@ -1,0 +1,9 @@
+# Claude Code local skill files — not part of the published project
+.claude/
+
+# Compiled binary
+spongebob
+spongebob.exe
+
+# Plan file (local, not for publishing)
+spongbob-plan.md
