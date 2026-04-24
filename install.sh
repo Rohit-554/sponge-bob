@@ -3,7 +3,8 @@ set -euo pipefail
 
 REPO="Rohit-554/sponge-bob"
 BINARY="spongebob"
-INSTALL_DIR="/usr/local/bin"
+INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
+mkdir -p "$INSTALL_DIR"
 
 OS_RAW=$(uname -s | tr '[:upper:]' '[:lower:]')
 
