@@ -23,7 +23,7 @@ func main() {
 func run() error {
 	upload := parseUploadRequest()
 
-	token, err := config.ResolveToken()
+	token, err := config.ResolveToken(upload.work)
 	if err != nil {
 		return err
 	}
@@ -55,12 +55,14 @@ type uploadRequest struct {
 	description      string
 	filenameOverride string
 	public           bool
+	work             bool
 }
 
 func parseUploadRequest() uploadRequest {
 	req := uploadRequest{}
 
 	flag.BoolVar(&req.public, "public", false, "Make gist public (default: secret)")
+	flag.BoolVar(&req.work, "work", false, "Use work token (GITHUB_WORK_TOKEN or SPONGEBOB_WORK_TOKEN)")
 	flag.StringVar(&req.description, "desc", "Shared via spongebob", "Gist description")
 	flag.StringVar(&req.filenameOverride, "filename", "", "Filename shown in Gist (default: source filename or plan.md)")
 	flag.Usage = printUsage
@@ -145,13 +147,16 @@ Usage:
   spongebob <file>              Upload file as secret gist (default)
   cat <file> | spongebob        Pipe content as secret gist
   spongebob <file> --public     Upload as public gist
+  spongebob <file> --work       Upload using work token
 
 Flags:`)
 	flag.PrintDefaults()
 	fmt.Fprintln(os.Stderr, `
 Environment:
-  GITHUB_TOKEN      GitHub personal access token (needs "gist" scope)
-  SPONGEBOB_TOKEN   Alternative token env var
+  GITHUB_TOKEN         GitHub personal access token (needs "gist" scope)
+  GITHUB_WORK_TOKEN    Alternative token for --work flag
+  SPONGEBOB_TOKEN      Alternative token env var
+  SPONGEBOB_WORK_TOKEN Alternative work token env var
 
 Generate a token at: https://github.com/settings/tokens`)
 }

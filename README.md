@@ -125,6 +125,21 @@ spongebob checks for `GITHUB_TOKEN` first, then falls back to `SPONGEBOB_TOKEN` 
 export SPONGEBOB_TOKEN=your_token_here
 ```
 
+### Multiple Accounts Setup
+
+If you juggle personal and work GitHub accounts, you can define two tokens in your `~/.zshrc` or `~/.bashrc`:
+
+```sh
+export GITHUB_TOKEN=your_personal_token
+export GITHUB_WORK_TOKEN=your_work_token
+```
+
+When you want to share something to your work account, simply use the `--work` flag:
+
+```sh
+spongebob --work plan.md
+```
+
 The token is read from the environment only. It is never logged, printed, or accepted as a command-line argument.
 
 ---
@@ -178,6 +193,7 @@ https://gist.github.com/Rohit-554/abc123def456
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--public` | false | Share publicly. Default is always secret. |
+| `--work` | false | Use your secondary/work token (`GITHUB_WORK_TOKEN`). |
 | `--desc` | `Shared via spongebob` | Description attached to the shared file. |
 | `--filename` | Source filename or `plan.md` | Filename used in the shared view. |
 
