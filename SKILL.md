@@ -23,24 +23,63 @@ curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/install.sh
 
 ## Token setup check
 
-Check if any of these tokens are set in the environment:
+First, check if tokens are already set in the current environment:
 
 ```bash
 echo $SPONGEBOB_GITHUB_TOKEN
 echo $SPONGEBOB_GITHUB_WORK_TOKEN
 ```
 
-If neither is set, you must tell the user to configure their token(s) before proceeding. Present this information clearly in this order:
+**If at least one token is set (non-empty output)** → proceed directly to Usage. No further setup needed.
 
-1. **Already saved it?**: Ask the user if they already added the token to their `~/.zshrc` or `~/.bashrc`. If they did, remind them they **must** either restart Claude or run the `export` command directly in this terminal session so Claude can pick it up.
-2. **Need a new token?**: Go to https://github.com/settings/tokens and generate a token with only the `gist` scope.
-3. **Single Account Setup**: Tell the user to run `export SPONGEBOB_GITHUB_TOKEN=your_token` in the terminal.
-4. **Multiple Accounts Setup**: Explain that if they use separate personal and work accounts, they can instead set:
-   - `export SPONGEBOB_GITHUB_TOKEN=personal_token`
-   - `export SPONGEBOB_GITHUB_WORK_TOKEN=work_token`
-5. **Persisting**: Tell them to add these `export` lines to their `~/.zshrc` or `~/.bashrc` for future sessions.
+**If neither is set (both outputs are empty)** → follow the steps below in order:
 
-Do **not** proceed until a token is confirmed to be set in the current environment.
+---
+
+### Step 1 — Do you already have a token saved?
+
+Ask the user: *"Have you already added your GitHub token to `~/.zshrc`?"*
+
+- **Yes** → The token is saved but not active in this session. Skip to Step 3.
+- **No** → Continue to Step 2.
+
+---
+
+### Step 2 — Generate a new GitHub token
+
+Go to https://github.com/settings/tokens and generate a **Classic** token with **only the `gist` scope** checked. Copy the token value.
+
+---
+
+### Step 3 — Add the token to ~/.zshrc
+
+Tell the user to run this command to persist the token across all future sessions:
+
+**Single account (personal only):**
+```bash
+echo 'export SPONGEBOB_GITHUB_TOKEN=your_personal_token' >> ~/.zshrc
+```
+
+**Two accounts (personal + work):**
+```bash
+echo 'export SPONGEBOB_GITHUB_TOKEN=your_personal_token' >> ~/.zshrc
+echo 'export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token' >> ~/.zshrc
+```
+
+Replace `your_personal_token` / `your_work_token` with the actual token values.
+
+---
+
+### Step 4 — Restart Claude Code in a fresh terminal
+
+The token will **not** be available in the current Claude Code session because environment variables are loaded at shell startup. The user must:
+
+1. **Close this Claude Code session entirely.**
+2. **Open a new terminal window.**
+3. **Launch Claude Code again** in that new terminal.
+4. **Type:** `setup spongebob` — Claude will re-run the token check and, since the token is now in `~/.zshrc`, it will be active and ready to use.
+
+Do **not** attempt to proceed in the current session after this point. Stop and wait for the user to follow Step 4.
 
 ## Trigger phrases
 
