@@ -30,18 +30,17 @@ echo $SPONGEBOB_GITHUB_TOKEN
 echo $SPONGEBOB_GITHUB_WORK_TOKEN
 ```
 
-If neither is set → tell the user:
+If neither is set, you must tell the user to configure their token(s) before proceeding. Present this information clearly:
 
-> "Please set your GitHub token first:
-> ```
-> export SPONGEBOB_GITHUB_TOKEN=your_token
-> ```
-> *(If you have multiple accounts, you can also set `export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token`)*
-> 
-> Add to `~/.zshrc` or `~/.bashrc` to persist across sessions.
-> Generate a token at: https://github.com/settings/tokens (needs **gist** scope)"
+1. **Get a Token**: Go to https://github.com/settings/tokens and generate a token with only the `gist` scope.
+2. **Single Account**: Tell the user to run `export SPONGEBOB_GITHUB_TOKEN=your_token`
+3. **Multiple Accounts**: Explain that if they use separate personal and work accounts, they can instead set:
+   - `export SPONGEBOB_GITHUB_TOKEN=personal_token`
+   - `export SPONGEBOB_GITHUB_WORK_TOKEN=work_token`
+4. **Persisting**: Tell them to add these `export` lines to their `~/.zshrc` or `~/.bashrc`.
+5. **CRITICAL WARNING**: Warn the user that if they add it to their `~/.zshrc`, they **must** either restart Claude or run the `export` command directly in the current terminal, otherwise Claude will not see the updated environment variables.
 
-Do **not** proceed until a token is confirmed to be set.
+Do **not** proceed until a token is confirmed to be set in the current environment.
 
 ## Trigger phrases
 
