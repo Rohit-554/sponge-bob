@@ -18,7 +18,7 @@ If not found → run the install command below before proceeding.
 ## Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/rohitx/spongebob/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/install.sh | bash
 ```
 
 ## Token setup check
