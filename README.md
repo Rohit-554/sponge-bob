@@ -1,11 +1,14 @@
-# spongebob
-
+# SpongeBob
 [![Go Version](https://img.shields.io/badge/go-1.22+-00ADD8?style=flat-square&logo=go)](https://go.dev)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey?style=flat-square)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen?style=flat-square)]()
 
 A command-line tool that turns any markdown file into a shareable link. Pass it a file, get back a URL. That is all it does.
+
+<img width="1584" height="396" alt="Your paragraph text" src="https://github.com/user-attachments/assets/520aafd1-7119-4b49-b034-10d75b508cb6" />
+
+
 
 ## The Problem
 
