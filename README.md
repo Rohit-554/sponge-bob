@@ -9,7 +9,6 @@ A command-line tool that turns any markdown file into a shareable link. Pass it 
 <img width="1584" height="396" alt="Your paragraph text" src="https://github.com/user-attachments/assets/520aafd1-7119-4b49-b034-10d75b508cb6" />
 
 
-
 ## The Problem
 
 You use AI agents every day. At some point mid-session you need to share a plan or file, and there is no fast way to do it.
@@ -19,6 +18,12 @@ You use AI agents every day. At some point mid-session you need to share a plan 
 - Sending a `.md` file over Slack forces the other person to download and render it.
 - You lose context every time you context-switch just to share one file.
 - Most tools default to public, which is wrong for a work plan.
+
+## Demo 
+<img width="2944" height="1448" alt="image" src="https://github.com/user-attachments/assets/1e4c7800-f4d8-47f1-87f3-768033f88eb7" />
+
+<img width="1276" height="388" alt="image" src="https://github.com/user-attachments/assets/cfe3b563-682a-41b9-a016-cff01725fe8c" />
+
 
 ## The Solution
 
