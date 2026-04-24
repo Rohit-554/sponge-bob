@@ -51,7 +51,7 @@ curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/install.sh
 Then set your GitHub token and run it:
 
 ```sh
-export GITHUB_TOKEN=your_token
+export SPONGEBOB_GITHUB_TOKEN=your_token
 spongebob plan.md
 ```
 
@@ -114,24 +114,18 @@ spongebob uses GitHub Gist as the sharing backend. It needs a personal access to
 **Step 4.** Export it in your shell:
 
 ```sh
-export GITHUB_TOKEN=your_token_here
+export SPONGEBOB_GITHUB_TOKEN=your_token_here
 ```
 
 To keep it across sessions, add that line to your `~/.zshrc` or `~/.bashrc`.
-
-spongebob checks for `GITHUB_TOKEN` first, then falls back to `SPONGEBOB_TOKEN` if you prefer to keep them separate.
-
-```sh
-export SPONGEBOB_TOKEN=your_token_here
-```
 
 ### Multiple Accounts Setup
 
 If you juggle personal and work GitHub accounts, you can define two tokens in your `~/.zshrc` or `~/.bashrc`:
 
 ```sh
-export GITHUB_TOKEN=your_personal_token
-export GITHUB_WORK_TOKEN=your_work_token
+export SPONGEBOB_GITHUB_TOKEN=your_personal_token
+export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token
 ```
 
 When you want to share something to your work account, simply use the `--work` flag:
@@ -193,7 +187,7 @@ https://gist.github.com/Rohit-554/abc123def456
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--public` | false | Share publicly. Default is always secret. |
-| `--work` | false | Use your secondary/work token (`GITHUB_WORK_TOKEN`). |
+| `--work` | false | Use your secondary/work token (`SPONGEBOB_GITHUB_WORK_TOKEN`). |
 | `--desc` | `Shared via spongebob` | Description attached to the shared file. |
 | `--filename` | Source filename or `plan.md` | Filename used in the shared view. |
 
@@ -230,7 +224,7 @@ your file
     |
     v
 POST https://api.github.com/gists
-Authorization: Bearer $GITHUB_TOKEN
+Authorization: Bearer $SPONGEBOB_GITHUB_TOKEN
 public: false (default)
     |
     v

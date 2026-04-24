@@ -26,19 +26,17 @@ curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/install.sh
 Check if any of these tokens are set in the environment:
 
 ```bash
-echo $GITHUB_TOKEN
-echo $SPONGEBOB_TOKEN
-echo $GITHUB_WORK_TOKEN
-echo $SPONGEBOB_WORK_TOKEN
+echo $SPONGEBOB_GITHUB_TOKEN
+echo $SPONGEBOB_GITHUB_WORK_TOKEN
 ```
 
 If neither is set → tell the user:
 
 > "Please set your GitHub token first:
 > ```
-> export GITHUB_TOKEN=your_token
+> export SPONGEBOB_GITHUB_TOKEN=your_token
 > ```
-> *(If you have multiple accounts, you can also set `export GITHUB_WORK_TOKEN=your_work_token`)*
+> *(If you have multiple accounts, you can also set `export SPONGEBOB_GITHUB_WORK_TOKEN=your_work_token`)*
 > 
 > Add to `~/.zshrc` or `~/.bashrc` to persist across sessions.
 > Generate a token at: https://github.com/settings/tokens (needs **gist** scope)"
@@ -62,7 +60,7 @@ Activate this skill when the user says any of:
 ```bash
 spongebob <file>              # secret gist — DEFAULT, always use this
 spongebob <file> --public     # ONLY if user explicitly says "public"
-spongebob <file> --work       # use the GITHUB_WORK_TOKEN instead
+spongebob <file> --work       # use the SPONGEBOB_GITHUB_WORK_TOKEN instead
 cat <file> | spongebob        # pipe support
 spongebob <file> --desc "My plan"     # custom description
 spongebob <file> --filename plan.md   # custom filename in gist
