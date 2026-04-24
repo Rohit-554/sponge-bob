@@ -7,6 +7,16 @@
 
 A command-line tool that uploads a markdown file to GitHub Gist and returns a shareable link. Pass it a file, get back a URL. That is all it does.
 
+You use AI agents every day. They generate plans, write code, produce documents. At some point in the middle of a session you need to share one of those files, with a teammate, a reviewer, or another AI. That is where things fall apart.
+
+- You have to leave the terminal, open a browser, and create a Gist or Pastebin by hand.
+- You paste the entire file content into the chat just to share it with an AI.
+- Sending a `.md` file over Slack or email forces the other person to download and render it themselves.
+- You lose context switching out of your current session just to share one file.
+- Most tools default to public, which is not what you want for a work plan.
+
+spongebob fixes all of this. One command, one link, always secret by default.
+
 ```
 spongebob plan.md
 https://gist.github.com/Rohit-554/abc123def456
