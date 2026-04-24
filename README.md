@@ -5,24 +5,28 @@
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey?style=flat-square)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen?style=flat-square)]()
 
-A command-line tool that uploads a markdown file to GitHub Gist and returns a shareable link. Pass it a file, get back a URL. That is all it does.
+A command-line tool that turns any markdown file into a shareable link. Pass it a file, get back a URL. That is all it does.
 
-You use AI agents every day. They generate plans, write code, produce documents. At some point in the middle of a session you need to share one of those files, with a teammate, a reviewer, or another AI. That is where things fall apart.
+## The Problem
 
-- You have to leave the terminal, open a browser, and create a Gist or Pastebin by hand.
-- You paste the entire file content into the chat just to share it with an AI.
-- Sending a `.md` file over Slack or email forces the other person to download and render it themselves.
-- You lose context switching out of your current session just to share one file.
-- Most tools default to public, which is not what you want for a work plan.
+You use AI agents every day. At some point mid-session you need to share a plan or file, and there is no fast way to do it.
 
-spongebob fixes all of this. One command, one link, always secret by default.
+- No way to get a shareable link without leaving the terminal and doing it by hand.
+- Sharing with an AI means pasting the whole file into the chat.
+- Sending a `.md` file over Slack forces the other person to download and render it.
+- You lose context every time you context-switch just to share one file.
+- Most tools default to public, which is wrong for a work plan.
+
+## The Solution
 
 ```
 spongebob plan.md
 https://gist.github.com/Rohit-554/abc123def456
 ```
 
-It is designed to work as a Claude Code skill so that you can say "share this plan" and Claude will run it automatically.
+One command. One link. Secret by default.
+
+It also works as a Claude Code skill. Say "share this plan" and Claude runs it automatically.
 
 ---
 
@@ -36,7 +40,7 @@ Download [SKILL.md](https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/
 curl -sSL https://raw.githubusercontent.com/Rohit-554/sponge-bob/main/SKILL.md >> CLAUDE.md
 ```
 
-Then tell Claude: `install spongebob`. Claude will check your environment, run the installer, verify your token is set, and confirm the tool is ready. After that, say "share this plan" whenever you want a shareable link.
+Then tell Claude: `install spongebob`. Claude will check your environment, run the installer, verify your token is set, and confirm the tool is ready. After that, say "share this plan" or "give me a link" whenever you want to share a file.
 
 **Option 2 — Install manually**
 
@@ -99,7 +103,7 @@ Move the binary to any directory on your PATH. No external dependencies.
 
 ## Token Setup
 
-spongebob needs a GitHub personal access token to create Gists on your behalf.
+spongebob uses GitHub Gist as the sharing backend. It needs a personal access token to create Gists on your behalf.
 
 **Step 1.** Go to [https://github.com/settings/tokens](https://github.com/settings/tokens) and click **Generate new token (classic)**.
 
@@ -145,15 +149,15 @@ cat plan.md | spongebob
 spongebob plan.md --desc "Auth refactor plan"
 ```
 
-### Custom filename shown inside the Gist
+### Custom filename
 
 ```sh
 spongebob plan.md --filename auth-refactor.md
 ```
 
-### Public Gist
+### Share publicly
 
-By default every Gist is secret. Pass `--public` only when you explicitly want it to be publicly listed.
+By default every share is secret. Pass `--public` only when you explicitly want the link to be publicly listed.
 
 ```sh
 spongebob plan.md --public
@@ -173,9 +177,9 @@ https://gist.github.com/Rohit-554/abc123def456
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--public` | false | Make the Gist public. Default is always secret. |
-| `--desc` | `Shared via spongebob` | Description shown on the Gist page. |
-| `--filename` | Source filename or `plan.md` | Filename shown inside the Gist. |
+| `--public` | false | Share publicly. Default is always secret. |
+| `--desc` | `Shared via spongebob` | Description attached to the shared file. |
+| `--filename` | Source filename or `plan.md` | Filename used in the shared view. |
 
 ---
 
@@ -192,7 +196,7 @@ Once added, Claude Code will:
 - Recognise phrases like "share plan", "give me a link", or "spongebob this"
 - Check whether spongebob is installed before running it
 - Verify the token is set in your environment
-- Always create a secret Gist unless you explicitly say "public"
+- Always share secretly unless you explicitly say "public"
 - Present the returned URL as a clickable link
 
 ---
